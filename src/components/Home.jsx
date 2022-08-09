@@ -3,7 +3,7 @@ import Movies from './Movies';
 import Preloader from './Preloader';
 import Search from './Search';
 
-const url = ' http://www.omdbapi.com/?i=tt3896198&apikey=99076e93';
+const url = ' https://www.omdbapi.com/?i=tt3896198&apikey=99076e93';
 
 const Home = () => {
 	const [movies, setMovies] = useState([]);
