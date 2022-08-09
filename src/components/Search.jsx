@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+const fakeApi = () => console.log('Api is called');
 const Search = (props) => {
+	const [timer, setTimer] = useState(null);
 	const { searchMovies = Function.propotype } = props;
 
 	const [search, setSearch] = useState('');
@@ -10,6 +12,19 @@ const Search = (props) => {
 		if (e.key === 'Enter') {
 			searchMovies(search, type);
 		}
+	};
+
+	const inputChanged = (e) => {
+		setSearch(e.target.value);
+
+		clearTimeout(timer);
+
+		const newTimer = setTimeout(() => {
+			fakeApi();
+			searchMovies(search, type);
+		}, 500);
+
+		setTimer(newTimer);
 	};
 
 	const handleFilter = (e) => {
@@ -25,7 +40,7 @@ const Search = (props) => {
 						className='validate'
 						placeholder='search'
 						value={search}
-						onChange={(e) => setSearch(e.target.value)}
+						onChange={inputChanged}
 						onKeyDown={handleKey}
 					/>
 					<button className='' onClick={() => searchMovies(search, type)}>
